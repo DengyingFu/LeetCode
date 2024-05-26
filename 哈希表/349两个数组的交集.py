@@ -19,12 +19,19 @@ class Solution:
         table = {}
         for num in nums1:
             table[num] = table.get(num, 0) + 1
-        
         # 使用集合存储结果
         res = set()
         for num in nums2:
             if num in table:
                 res.add(num)
                 del table[num]
-        
         return list(res)
+#========用集合实现的哈希表=========
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:        
+        res = set(nums1)
+        t = set()
+        for num in nums2:
+            if num in res:
+                t.add(num)       
+        return list(t)
