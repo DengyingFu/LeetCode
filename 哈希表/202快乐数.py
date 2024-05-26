@@ -13,4 +13,17 @@ class Solution:
             res[n2] = res.get(n2,0)+1
             if res[n2]>1:
                 return False
-            
+#=======集合set的哈希表========
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        res = set()
+        while n not in res:
+            res.add(n)
+            tmp = 0
+            for num in str(n):
+                tmp = tmp+int(num)**2
+            if tmp == 1:
+                return True
+            else:
+                n = tmp
+        return False
