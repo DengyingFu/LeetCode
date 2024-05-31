@@ -6,25 +6,31 @@
  #双指针
       #思路1：两个指针分别从headA和headB开始，如果有相交设相交开始后面共有t个节点，那么指针pA和pB都是走skipA+skipB+t步就到相交点，那么可以通过判断
       #pA是否等于pB来判断是否走到了相交点。但是需要判断没有相交节点的情况及时跳出while循环，我这里的方法是判断pA和pB回头了几次，如果大于1次那么就代表没有相交点
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-         pA = headA
-        pB = headB
-        na =nb= 0
-        while pA!=pB:
-            if pA.next!=None:
-                pA = pA.next 
-            else:
-                pA = headB
-                na+=1
-            if pB.next!=None:   
-                pB = pB.next 
-            else:
-                pB = headA
-                nb+=1
-            if na>1 or nb > 1:
+        curA = headA
+        curB = headB
+        cnta = 0
+        cntb = 0
+        while curA!=curB:
+            curA = curA.next
+            curB = curB.next
+            if curA==None:
+                curA = headB
+                cnta += 1
+            if curB==None:
+                curB = headA
+                cntb += 1
+            if cnta > 1 or cntb>1:
                 return None
-        return pA
+        return curA
+        
    #思路2：代码随想录思路，先遍历A和B的长度la和lb，假设la>lb，然后让curA先移动la-lb步，然后curA和curB同时移动判断有没有相交点
   class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
