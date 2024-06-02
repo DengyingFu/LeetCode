@@ -15,5 +15,5 @@ class Solution:
                 elif t=='*':
                     stack.append(n2*n1)
                 elif t=='/':
-                    stack.append(int(n2/n1))
+                    stack.append(int(n2/n1))  #注意 向零截断不是向下取整，//是向下取整。
         return stack[0]
