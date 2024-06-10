@@ -1,4 +1,4 @@
-#============从上到下每一层依次翻转=====
+#============层次法=====
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -19,4 +19,21 @@ class Solution:
                     que.append(node.left)
                 if node.right:
                     que.append(node.right)
+        return root
+#=========递归法 前序遍历========
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        def traveral(node):
+            if node==None:
+                return
+            node.left, node.right = node.right, node.left
+            traveral(node.left)
+            traveral(node.right)
+        traveral(root)
         return root
